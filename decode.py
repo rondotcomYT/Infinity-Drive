@@ -4,7 +4,8 @@ import cv2
 from PIL import Image
 from tqdm import tqdm
 
-cam = cv2.VideoCapture(input("What file should I decode?: "))
+cam = cv2.VideoCapture(input("What file should I decode? (i.e infinity_drive.mp4): "))
+file_name = input("What should I name the output file? (i.e output.zip): ")
 frames = 0
 
 for root, dirs, files in os.walk('./temp/'):
@@ -12,6 +13,8 @@ for root, dirs, files in os.walk('./temp/'):
         os.unlink(os.path.join(root, f))
     for d in dirs:
         shutil.rmtree(os.path.join(root, d))
+
+print("Extracting frames...")
 
 while True:
     ret, frame = cam.read()
@@ -25,19 +28,18 @@ while True:
 width = cv2.imread("./temp/0.png", cv2.IMREAD_UNCHANGED).shape[1]
 height = cv2.imread("./temp/0.png", cv2.IMREAD_UNCHANGED).shape[0]
 
-x = 0
-y = 0
-coordinate = x, y
+density = 8
+coordinate = 0, 0
 binary = ""
 frame = 0
 
-with open(input("What should I name the output file? (i.e output.zip): "), "wb") as file:
+with open(file_name, "wb") as file:
     for a in tqdm(range(frames), unit=' FP'):
         image = Image.open("./temp/" + str(frame) + ".png")
-        for b in range(480):
-            for c in range(80):
+        for b in range(int(height / density)):
+            for c in range(int(width / density / 8)):
                 for i in range(8):
-                    coordinate = c * int(8) + i, b
+                    coordinate = (c * int(8) * density) + (i * density) + 2, b * density + 2
                     color = image.getpixel(coordinate)
                     if color[0] > 128:
                         binary = binary + "1"
