@@ -1,41 +1,30 @@
 import os
-import shutil
 import cv2
 from PIL import Image
 from tqdm import tqdm
 
-cam = cv2.VideoCapture(input("What file should I decode? (i.e infinity_drive.mp4): "))
-file_name = input("What should I name the output file? (i.e output.zip): ")
-frames = 0
-
-for root, dirs, files in os.walk('./temp/'):
-    for f in files:
-        os.unlink(os.path.join(root, f))
-    for d in dirs:
-        shutil.rmtree(os.path.join(root, d))
-
-print("Extracting frames...")
-
-while True:
-    ret, frame = cam.read()
-    if ret:
-        name = "./temp/" + str(frames) + ".png"
-        cv2.imwrite(name, frame)
-        frames += 1
-    else:
-        break
-
-width = cv2.imread("./temp/0.png", cv2.IMREAD_UNCHANGED).shape[1]
-height = cv2.imread("./temp/0.png", cv2.IMREAD_UNCHANGED).shape[0]
-
+input_file = input("What file should I decode? (i.e Infinity-Drive.mp4): ")
+while str(os.path.exists(input_file)) != "True":
+    print("Oops! File does not exist.")
+    input_file = input("What file should I decode?: ")
+cap = cv2.VideoCapture(input_file)
+output_file = input("What should I name the output file? (i.e output.zip): ")
+frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+cap.set(1, 0)
+res, frame = cap.read()
+cv2.imwrite("cache.png", frame)
+width = cv2.imread("cache.png", cv2.IMREAD_UNCHANGED).shape[1]
+height = cv2.imread("cache.png", cv2.IMREAD_UNCHANGED).shape[0]
 density = 8
 coordinate = 0, 0
 binary = ""
-frame = 0
 
-with open(file_name, "wb") as file:
+with open(output_file, "wb") as file:
     for a in tqdm(range(frames), unit=' FP'):
-        image = Image.open("./temp/" + str(frame) + ".png")
+        cap.set(1, a)
+        res, frame = cap.read()
+        cv2.imwrite("cache.png", frame)
+        image = Image.open("cache.png")
         for b in range(int(height / density)):
             for c in range(int(width / density / 8)):
                 for i in range(8):
@@ -50,11 +39,5 @@ with open(file_name, "wb") as file:
                 elif len(hex(int(binary, 2))) == 3:
                     file.write(bytearray.fromhex(hex(int(binary, 2)).replace("0x", "0")))
                 binary = ""
-        frame += 1
+os.remove("cache.png")
 file.close()
-
-for root, dirs, files in os.walk('./temp/'):
-    for f in files:
-        os.unlink(os.path.join(root, f))
-    for d in dirs:
-        shutil.rmtree(os.path.join(root, d))
