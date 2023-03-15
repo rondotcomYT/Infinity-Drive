@@ -10,5 +10,5 @@ All credit for the original concept belongs to [**DvorakDwarf**](https://github.
    - [**Download Git**](https://github.com/git-guides/install-git) if you do not have it installed
 3. Install requirements `pip install -r requirements.txt`
    - [**Download pip**](https://pip.pypa.io/en/stable/installation/) if you do not have it installed
-4. Run Infinity-Drive `python3 Infinity-Drive.py`
+4. Run Infinity-Drive `python Infinity-Drive.py`
 5. Follow on-screen instructions
