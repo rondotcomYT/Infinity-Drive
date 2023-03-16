@@ -89,7 +89,7 @@ if pref == "1":
     cv2.destroyAllWindows()
 
 # Decode File
-elif pref == 2:
+elif pref == "2":
     # Define Input File
     input_file = input("What file should I decode? (i.e Infinity-Drive.mp4): ")
     while str(os.path.exists(input_file)) != "True":
