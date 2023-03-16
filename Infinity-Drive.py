@@ -11,10 +11,10 @@ pref = input("Would you like to [1] ENCODE or [2] DECODE a file?: ")
 # Encode File
 if pref == "1":
     # Define Input File
-    input_file = input("What file should I encode? (i.e input.zip): ")
-    while str(os.path.exists(input_file)) != "True":
+    input_file = input("What file should I encode? (i.e input.zip): ").replace('"', "")
+    while str(os.path.isfile(input_file)) != "True":
         print("Oops! File does not exist.")
-        input_file = input("What file should I encode?: ")
+        input_file = input("What file should I encode?: ").replace('"', "")
     file_size = os.path.getsize(input_file)
 
     # Define Video Size
@@ -91,10 +91,10 @@ if pref == "1":
 # Decode File
 elif pref == "2":
     # Define Input File
-    input_file = input("What file should I decode? (i.e Infinity-Drive.mp4): ")
-    while str(os.path.exists(input_file)) != "True":
+    input_file = input("What file should I decode? (i.e Infinity-Drive.mp4): ").replace('"', "")
+    while str(os.path.isfile(input_file)) != "True":
         print("Oops! File does not exist.")
-        input_file = input("What file should I decode?: ")
+        input_file = input("What file should I decode?: ").replace('"', "")
     cap = cv2.VideoCapture(input_file)
 
     # Define Output File
