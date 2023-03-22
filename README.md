@@ -13,10 +13,11 @@ I'm very new to Python, as well as programming in general, and as a result the c
 
 ## Installation and Setup
 
-1. [**Install Python 3**](https://www.python.org/downloads/)
-2. Clone the repository `git clone https://github.com/rondotcomYT/Infinity-Drive.git`
+1. Install [**Python 3**](https://www.python.org/downloads/)
+2. Install [**FFmpeg**](https://ffmpeg.org/download.html)
+3. Clone the repository `git clone https://github.com/rondotcomYT/Infinity-Drive.git`
    - [**Download Git**](https://github.com/git-guides/install-git) if you do not have it installed
-3. Install requirements `pip install -r requirements.txt`
+4. Install requirements `pip install -r requirements.txt`
    - [**Download pip**](https://pip.pypa.io/en/stable/installation/) if you do not have it installed
-4. Run Infinity-Drive `python Infinity-Drive.py`
-5. Follow on-screen instructions
+5. Run Infinity-Drive `python Infinity-Drive.py`
+6. Follow on-screen instructions
