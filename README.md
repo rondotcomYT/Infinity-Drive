@@ -1,4 +1,8 @@
-![Infinity-Drive](https://user-images.githubusercontent.com/124475503/225739664-136e7652-c68d-42bb-8904-5cacbb537722.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/124475503/227062194-11a2e228-61ef-4fe7-a6c7-1a0ebba8f417.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/124475503/227062235-ef1eaff8-238a-40e1-955b-4b2a9880d6dd.png">
+  <img alt="Infinity-Drive Logo" src="https://user-images.githubusercontent.com/124475503/227062235-ef1eaff8-238a-40e1-955b-4b2a9880d6dd.png">
+</picture>
 
 A terminal-based Python script that allows YouTube to act as storage for any type of file.
 
