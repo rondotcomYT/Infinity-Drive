@@ -17,6 +17,16 @@ if pref == "1":
         input_file = input("What file should I encode?: ")
     file_size = os.path.getsize(input_file)
 
+    # Checking if encoded file exists
+    file_name = "Infinity-Drive"
+    file_num = 1
+    if os.path.exists(f"{file_name}.mp4") is False:
+        pass
+    else:
+        while os.path.exists(f"{file_name}({file_num}).mp4"):
+            file_num += 1
+        file_name = f"{file_name}({file_num})"
+
     # Define Video Size
     width = 1280
     height = 720
@@ -28,7 +38,7 @@ if pref == "1":
     w_pix = 0
     h_pix = 0
     frames = 0
-    video = cv2.VideoWriter("Infinity-Drive.mp4", cv2.VideoWriter_fourcc(*'mp4v'), 30, (width, height))
+    video = cv2.VideoWriter(f"{file_name}.mp4", cv2.VideoWriter_fourcc(*'mp4v'), 30, (width, height))
     img = PIL.Image.new('1', (width, height), "black")
     print("Generating frames, please be patient...")
 
