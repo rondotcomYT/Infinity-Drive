@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw
 from tqdm import tqdm
 import PIL
 
+# Check if input file exits
 input_file = input("What file should I encode?: ")
 while str(os.path.isfile(input_file)) != "True":
     print("Oops! File does not exist.")
@@ -21,15 +22,21 @@ else:
         file_num += 1
     file_name = f"{file_name}({file_num})"
     
+# Defines variables
+width = 0
+height = 0
+density = 0
 file_size = os.path.getsize(input_file)
 estimated_frames = round(file_size / 1800)
 cache_path = "cache"
 logical_processors = os.cpu_count()
 framerate = 30
 
+# Check if cache_path exits
 if not os.path.exists(cache_path):
     os.makedirs(cache_path)
 
+# Clear contents of cache_path
 for filename in os.listdir(cache_path):
     file_path = os.path.join(cache_path, filename)
     try:
@@ -40,7 +47,8 @@ for filename in os.listdir(cache_path):
     except Exception as e:
         print('Failed to delete %s. Reason: %s' % (file_path, e))
 
-
+        
+# Defines frame generation
 def generate(cache_path, frame):
     counter = 0
     start_byte = frame * 1800
@@ -60,18 +68,18 @@ def generate(cache_path, frame):
                                 outline=None, width=1)
                     counter += 1
         img.save(f"./{cache_path}/{str(frame + 1)}.png")
-        # .zfill(len(str(estimated_frames)))
 
 
 one = Parallel(n_jobs=logical_processors)(
     delayed(generate)(cache_path, range(estimated_frames)[i]) for i in tqdm(range(estimated_frames), unit=' FP'))
 
+# Runs FFMPEG command
 ffmpeg_cmd = f'ffmpeg -an -sn -framerate {framerate} -i {cache_path}/%d.png -c:v libx264 -pix_fmt yuv420p -r 30 -preset fast -threads {logical_processors} {output_file} -hide_banner -loglevel error'
-image_files = sorted([os.path.join(cache_path, f) for f in os.listdir(cache_path) if f.endswith('.png')])
 tic = time.perf_counter()
 print("Generating frames...")
 os.system(ffmpeg_cmd)
 toc = time.perf_counter()
 print(f"Completed in {toc - tic:0.4f} seconds.")
 
+# Clears cache_path
 shutil.rmtree(cache_path)
