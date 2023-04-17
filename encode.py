@@ -10,8 +10,17 @@ input_file = input("What file should I encode?: ")
 while str(os.path.isfile(input_file)) != "True":
     print("Oops! File does not exist.")
     input_file = input("What file should I encode?: ")
-
-output_file = 'Infinity-Drive_v2.mp4'
+    
+# Check if output file exists
+output_file = "Infinity-Drive"
+file_num = 1
+if os.path.exists(f"{file_name}.mp4") is False:
+    output_file = f"{output_file}.mp4"
+else:
+    while os.path.exists(f"{file_name}({file_num}).mp4"):
+        file_num += 1
+    file_name = f"{file_name}({file_num})"
+    
 file_size = os.path.getsize(input_file)
 estimated_frames = round(file_size / 1800)
 cache_path = "cache"
