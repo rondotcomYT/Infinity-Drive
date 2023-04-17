@@ -9,7 +9,7 @@ A terminal-based Python script that allows YouTube to act as storage for any typ
 All credit for the original concept belongs to [**DvorakDwarf**](https://github.com/DvorakDwarf) and their [**Infinite-Storage-Glitch**](https://github.com/DvorakDwarf/Infinite-Storage-Glitch) project.
 
 ## A Few Words
-I'm very new to Python, as well as programming in general, and as a result the code within this repository is most likely incrediably inefficient, messily written, and riddled with plenty of bugs. When using this project, please keep that in mind, and report any [**Issues**](https://github.com/rondotcomYT/Infinity-Drive/issues) here and I'll do my best to fix them. Thanks!
+I'm very new to Python, as well as programming in general, and as a result the code within this repository is most likely incrediably inefficient, messily written, and riddled with plenty of bugs. When using this project, please keep that in mind, and report any [**issues**](https://github.com/rondotcomYT/Infinity-Drive/issues) here and I'll do my best to fix them. Thanks!
 
 ## Installation and Setup
 
