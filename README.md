@@ -12,7 +12,7 @@ All credit for the original concept belongs to [**DvorakDwarf**](https://github.
 This is where I'll be sharing my work-in-progess code for the next major release of Infinity-Drive. With the utilization of `joblib` and `FFmpeg`, the speeds of encoding and decoding will be significantly faster (over 10x from my initial testing so far). Whoop!
 
 ## A Few Words
-I'm very new to Python, as well as programming in general, and as a result the code within this repository is most likely incrediably inefficient, messily written, and riddled with plenty of bugs. When using this project, please keep that in mind, and report any [**Issues**](https://github.com/rondotcomYT/Infinity-Drive/issues) here and I'll do my best to fix them. Thanks!
+I'm very new to Python, as well as programming in general, and as a result the code within this repository is most likely incrediably inefficient, messily written, and riddled with plenty of bugs. When using this project, please keep that in mind, and report any [**issues**](https://github.com/rondotcomYT/Infinity-Drive/issues) here and I'll do my best to fix them. Thanks!
 
 ## Installation and Setup
 
